@@ -34,14 +34,14 @@ int main() {
 		for (int i = 1; i <= n; i++) {
 			scanf("%d", x + i);
 		}
-		int right = maxmam;
+		int right = 20;
 		int left = 0;
 		while (myabs(right - left) > 1) {
 			int mid = (left + right) >> 1;
 			if (gaoshi(mid)) {
-				right = mid - 1;
+				right = mid;
 			} else {
-				left = mid + 1;
+				left = mid;
 			}
 		}
 		int ansp = 0;
