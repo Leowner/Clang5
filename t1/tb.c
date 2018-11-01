@@ -69,7 +69,7 @@ void pri_down(int num) {
 		pri_down(p);
 	}
 }
-int main() {
+int premain() {
 	while (scanf("%d", &n) == 1) {
 		for (int i = 1; i <= n; i++) {
 			scanf("%d %d", &tim[i], &val[i]);
