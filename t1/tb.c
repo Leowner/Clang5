@@ -1,11 +1,16 @@
 #include <stdio.h>
 #include <string.h>
-// 使用队列维护，从后往前，对于所有可以放进去的，选择价值最大的
-int tim[2000];
-int val[2000];
+// 使用堆维护，从后往前，对于所有可以放进去的，选择价值最大的
+int tim[5000];
+int val[5000];
 int n;
-int que[2000];
+int pri_que[5000];
 int qfront, qend;
+int tot;
+void pri_up(int num);
+void pri_down(int num);
+int mymax(int a, int b);
+
 void qqsort(int left, int right) {
 	if (left >= right)
 		return;
@@ -32,12 +37,37 @@ void qqsort(int left, int right) {
 	qqsort(i, right);
 }
 void push(int x) {
-	qend++;
-	q[qend] = x;
+	tot++;
+	pri_que[tot] = x;
+	pri_up(tot);
+}
+void pri_up(int num) {
+	if (num == 1) return;
+	if (pri_que[num] > pri_que[num / 2]) {
+		int t = pri_que[num];
+		pri_que[num] = pri_que[num / 2];
+		pri_que[num / 2] = t;
+		pri_up(num / 2);
+	}
 }
 int pop(void) {
-	qfront++;
-	return(q[qfront]);
+	int t = pri_que[1];
+	pri_que[1] = 0;
+	pri_down(1);
+	return t;
+}
+int mymax(int a, int b) {
+	if (pri_que[a] > pri_que[b]) return a;
+	else return b;
+}
+void pri_down(int num) {
+	int p = mymax(num * 2, num * 2 + 1);	// p为编号
+	if (pri_que[num] < pri_que[p]) {
+		int t = pri_que[num];
+		pri_que[num] = pri_que[p];
+		pri_que[p] = t;
+		pri_down(p);
+	}
 }
 int main() {
 	while (scanf("%d", &n) == 1) {
@@ -45,18 +75,20 @@ int main() {
 			scanf("%d %d", &tim[i], &val[i]);
 		}
 		qqsort(1, n);
+		tot = 0;
 		/*for (int i = 1; i <= n; i++) {
 			printf("%d %d\n", tim[i], val[i]);
 		}*/
-		qfront = 0;
-		qend = 0;
-		int timcur = tim[n];
-		for (int i = n; i >= 1; i--) {
-			if (timcur == tim[i]) {
-				push(i);
-				for (int i = )
+		int ans = 0;
+		int curtask = n;
+		for (int cur = tim[n]; cur >= 1; cur--) {
+			while (tim[curtask] >= cur) {
+				push(val[curtask]);
+				curtask--;
 			}
+			ans += pop();
 		}
+		printf("%d\n", ans);
 	}
 
 	return 0;
