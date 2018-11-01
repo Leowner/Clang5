@@ -152,6 +152,7 @@
     <ClCompile Include="t3.c" />
     <ClCompile Include="ta.c" />
     <ClCompile Include="tb.c" />
+    <ClCompile Include="tbtest.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

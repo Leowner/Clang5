@@ -30,5 +30,8 @@
     <ClCompile Include="tb.c">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="tbtest.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
