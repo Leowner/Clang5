@@ -69,13 +69,14 @@ void pri_down(int num) {
 		pri_down(p);
 	}
 }
-int pre_main() {
+int main() {
 	while (scanf("%d", &n) == 1) {
 		for (int i = 1; i <= n; i++) {
 			scanf("%d %d", &tim[i], &val[i]);
 		}
 		qqsort(1, n);
 		tot = 0;
+		memset(pri_que, 0, sizeof(pri_que));
 		/*for (int i = 1; i <= n; i++) {
 			printf("%d %d\n", tim[i], val[i]);
 		}*/
