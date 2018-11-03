@@ -42,7 +42,7 @@ void merge_sort(int left, int right) {
 		a[i] = b[i];
 	}
 }
-int main() {
+int premain4() {
 	scanf("%d", &T);
 	for (int tcase = 1; tcase <= T; tcase++) {
 		scanf("%d", &n);

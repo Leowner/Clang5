@@ -2,7 +2,7 @@
 #include <string.h>
 
 
-int premain2() {
+int main() {
 
 
 	return 0;
